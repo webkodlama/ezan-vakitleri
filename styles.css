@@ -1,0 +1,1001 @@
+/* ============================================
+   EZAN VAKITLERI - ANA STIL DOSYASI
+   Modern, Responsive, Animasyonlu Tasarım
+   ============================================ */
+
+/* CSS Değişkenleri */
+:root {
+    --primary-color: #1a5f4a;
+    --primary-light: #2d8a6e;
+    --primary-dark: #0f3d2f;
+    --secondary-color: #d4af37;
+    --accent-color: #e8b923;
+    --bg-dark: #0a1628;
+    --bg-card: rgba(255, 255, 255, 0.05);
+    --bg-card-hover: rgba(255, 255, 255, 0.1);
+    --text-light: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.4);
+    --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    --gradient-gold: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset ve Temel Stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-light);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   ARKA PLAN ANIMASYONU
+   ============================================ */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: linear-gradient(180deg, #0a1628 0%, #1a3a52 50%, #0d2137 100%);
+}
+
+/* Yıldızlar */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite ease-in-out;
+    opacity: 0;
+}
+
+.star:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+.star:nth-child(2) { top: 20%; left: 80%; animation-delay: 0.5s; width: 3px; height: 3px; }
+.star:nth-child(3) { top: 60%; left: 10%; animation-delay: 1s; }
+.star:nth-child(4) { top: 40%; left: 70%; animation-delay: 1.5s; width: 4px; height: 4px; }
+.star:nth-child(5) { top: 80%; left: 50%; animation-delay: 2s; }
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px white; }
+}
+
+/* Hilal */
+.moon {
+    position: absolute;
+    top: 60px;
+    right: 60px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: -15px 5px 0 5px #f0e6d2;
+    transform: rotate(-20deg);
+    animation: moonGlow 4s infinite alternate;
+}
+
+@keyframes moonGlow {
+    0% { filter: drop-shadow(0 0 10px rgba(240, 230, 210, 0.3)); }
+    100% { filter: drop-shadow(0 0 30px rgba(240, 230, 210, 0.6)); }
+}
+
+/* ============================================
+   HEADER ve LOGO
+   ============================================ */
+.header {
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.logo-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.logo-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-primary);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    box-shadow: var(--shadow);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.logo-text h1 {
+    font-size: 28px;
+    font-weight: 700;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+}
+
+.logo-text span {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: block;
+    margin-top: -5px;
+}
+
+/* ============================================
+   ANA İÇERİK
+   ============================================ */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+/* ============================================
+   ŞEHİR SEÇİMİ BÖLÜMÜ
+   ============================================ */
+.city-section {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--bg-card);
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    margin-bottom: 30px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.section-title i {
+    font-size: 24px;
+    color: var(--accent-color);
+}
+
+.section-title h2 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.section-desc {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+/* Arama Kutusu */
+.search-box {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto 20px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 18px;
+}
+
+.city-select {
+    width: 100%;
+    padding: 18px 20px 18px 50px;
+    font-size: 16px;
+    font-family: inherit;
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    color: var(--text-light);
+    cursor: pointer;
+    transition: var(--transition);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+}
+
+.city-select:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 4px rgba(45, 138, 110, 0.2);
+}
+
+.city-select option {
+    background: var(--bg-dark);
+    color: var(--text-light);
+    padding: 10px;
+}
+
+/* Hızlı Şehirler */
+.quick-cities {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.quick-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-right: 5px;
+}
+
+.quick-city {
+    padding: 8px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    color: var(--text-light);
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.quick-city:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   BİLGİ BAR
+   ============================================ */
+.info-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 20px;
+    background: var(--gradient-primary);
+    border-radius: 16px;
+    margin-bottom: 30px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.info-item i {
+    font-size: 16px;
+    color: var(--accent-color);
+}
+
+/* ============================================
+   YÜKLENİYOR
+   ============================================ */
+.loading {
+    text-align: center;
+    padding: 60px 20px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--accent-color);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading p {
+    color: var(--text-muted);
+    font-size: 15px;
+}
+
+/* ============================================
+   EZAN VAKITLERİ KARTLARI
+   ============================================ */
+.prayer-times {
+    margin-bottom: 40px;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.times-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.time-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 25px 15px;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: var(--transition);
+    animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.time-card:nth-child(1) { animation-delay: 0.1s; }
+.time-card:nth-child(2) { animation-delay: 0.2s; }
+.time-card:nth-child(3) { animation-delay: 0.3s; }
+.time-card:nth-child(4) { animation-delay: 0.4s; }
+.time-card:nth-child(5) { animation-delay: 0.5s; }
+.time-card:nth-child(6) { animation-delay: 0.6s; }
+
+.time-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary-light);
+    box-shadow: var(--shadow-lg);
+}
+
+.time-card.active {
+    background: var(--gradient-primary);
+    border-color: var(--primary-light);
+    transform: scale(1.05);
+}
+
+.time-card.active .card-icon {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.time-card.active .time {
+    color: var(--accent-color);
+}
+
+.card-icon {
+    width: 55px;
+    height: 55px;
+    background: var(--bg-card-hover);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 22px;
+    color: var(--accent-color);
+    transition: var(--transition);
+}
+
+.time-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.time {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--accent-color);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.time-card .label {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* ============================================
+   GERİ SAYIM BÖLÜMÜ
+   ============================================ */
+.countdown-section {
+    margin-bottom: 40px;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.countdown-card {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(232, 185, 35, 0.05) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 24px;
+    padding: 30px;
+    text-align: center;
+}
+
+.countdown-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    color: var(--accent-color);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.countdown-header i {
+    animation: hourglass 2s infinite;
+}
+
+@keyframes hourglass {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+}
+
+.countdown-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.countdown-item {
+    text-align: center;
+}
+
+.countdown-item .number {
+    display: block;
+    width: 70px;
+    height: 70px;
+    background: var(--bg-card);
+    border-radius: 16px;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 70px;
+    color: var(--accent-color);
+    font-family: 'Courier New', monospace;
+    box-shadow: var(--shadow);
+}
+
+.countdown-item .label {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.countdown-separator {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-top: -20px;
+}
+
+.next-prayer {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+/* ============================================
+   BİLGİ KARTLARI
+   ============================================ */
+.info-section {
+    margin-bottom: 40px;
+}
+
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.info-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-light);
+    background: var(--bg-card-hover);
+}
+
+.info-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-primary);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 24px;
+    color: white;
+}
+
+.info-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.info-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+/* ============================================
+   NASIL KULLANILIR
+   ============================================ */
+.how-to-use {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 40px 30px;
+    margin-bottom: 40px;
+}
+
+.how-to-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.how-to-header i {
+    font-size: 40px;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.how-to-header h2 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    min-width: 200px;
+    max-width: 280px;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--bg-dark);
+    flex-shrink: 0;
+}
+
+.step-content h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.step-content p {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.step-arrow {
+    color: var(--accent-color);
+    font-size: 20px;
+    opacity: 0.5;
+}
+
+/* ============================================
+   REKLAM ALANI
+   ============================================ */
+.ad-section {
+    margin-bottom: 40px;
+}
+
+.ad-container {
+    background: var(--bg-card);
+    border: 1px dashed var(--border-color);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.ad-label {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-dark);
+    padding: 2px 15px;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.ad-content {
+    color: var(--text-muted);
+}
+
+.ad-content i {
+    font-size: 30px;
+    margin-bottom: 10px;
+    opacity: 0.5;
+}
+
+.ad-content p {
+    font-size: 14px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid var(--border-color);
+    padding: 50px 20px 30px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+}
+
+.footer-logo i {
+    font-size: 24px;
+    -webkit-text-fill-color: var(--accent-color);
+}
+
+.footer-desc {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.footer-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transition);
+}
+
+.footer-link:hover {
+    color: var(--accent-color);
+}
+
+.footer-divider {
+    width: 100px;
+    height: 1px;
+    background: var(--border-color);
+    margin: 0 auto 25px;
+}
+
+.footer-source {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.footer-source i {
+    color: var(--primary-light);
+}
+
+.copyright {
+    font-size: 13px;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* ============================================
+   ANIMASYONLAR
+   ============================================ */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+/* ============================================
+   RESPONSIVE TASARIM
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .header {
+        padding: 20px 15px;
+    }
+
+    .logo-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+    }
+
+    .logo-text h1 {
+        font-size: 22px;
+    }
+
+    .logo-text span {
+        font-size: 11px;
+    }
+
+    .main-container {
+        padding: 0 15px 30px;
+    }
+
+    .city-section {
+        padding: 30px 15px;
+    }
+
+    .section-title h2 {
+        font-size: 20px;
+    }
+
+    .info-bar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .times-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .time-card {
+        padding: 20px 10px;
+    }
+
+    .card-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    .time-card h3 {
+        font-size: 14px;
+    }
+
+    .time {
+        font-size: 20px;
+    }
+
+    .countdown-item .number {
+        width: 55px;
+        height: 55px;
+        font-size: 24px;
+        line-height: 55px;
+    }
+
+    .steps {
+        flex-direction: column;
+    }
+
+    .step-arrow {
+        transform: rotate(90deg);
+    }
+
+    .moon {
+        width: 50px;
+        height: 50px;
+        top: 30px;
+        right: 30px;
+        box-shadow: -10px 3px 0 3px #f0e6d2;
+    }
+}
+
+/* Mobil */
+@media (max-width: 480px) {
+    .times-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .time-card {
+        padding: 15px 8px;
+        border-radius: 16px;
+    }
+
+    .card-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .time-card h3 {
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+
+    .time {
+        font-size: 18px;
+    }
+
+    .time-card .label {
+        font-size: 10px;
+    }
+
+    .countdown-display {
+        gap: 8px;
+    }
+
+    .countdown-item .number {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+        line-height: 45px;
+        border-radius: 12px;
+    }
+
+    .countdown-separator {
+        font-size: 24px;
+    }
+
+    .countdown-item .label {
+        font-size: 10px;
+    }
+
+    .quick-cities {
+        gap: 8px;
+    }
+
+    .quick-city {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .info-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .info-card {
+        padding: 25px 20px;
+    }
+}
+
+/* Çok küçük ekranlar */
+@media (max-width: 350px) {
+    .times-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .countdown-item .number {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        line-height: 40px;
+    }
+}
+
+/* ============================================
+   DARK MODE DESTEĞİ (Sistem)
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-dark: #0a1628;
+    }
+}
+
+/* ============================================
+   YAZDIRMA STİLLERİ
+   ============================================ */
+@media print {
+    .bg-animation,
+    .ad-section,
+    .footer,
+    .how-to-use,
+    .info-section {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .time-card {
+        border: 1px solid #ccc;
+        break-inside: avoid;
+    }
+}

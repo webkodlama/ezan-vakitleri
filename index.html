@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Türkiye'nin tüm illeri için Diyanet İşleri Başkanlığından güncel ezan vakitleri. İmsak, sabah, öğle, ikindi, akşam ve yatsı namaz saatleri.">
+    <meta name="keywords" content="ezan vakitleri, namaz saatleri, diyanet, imsak, sabah, öğle, ikindi, akşam, yatsı, ramazan, iftar saati">
+    <meta name="author" content="Ezan Vakitleri">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Ezan Vakitleri - Güncel Namaz Saatleri">
+    <meta property="og:description" content="Diyanet'ten güncel ezan vakitleri. Tüm iller için namaz saatleri.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ezan-vakitleri.com">
+    <link rel="canonical" href="https://ezan-vakitleri.com">
+    <title>Ezan Vakitleri | Güncel Namaz Saatleri - Diyanet</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animasyonlu Arka Plan -->
+    <div class="bg-animation">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="moon"></div>
+    </div>
+
+    <!-- Header / Logo -->
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <i class="fas fa-mosque"></i>
+            </div>
+            <div class="logo-text">
+                <h1>Ezan Vakitleri</h1>
+                <span>Diyanet Güncel Namaz Saatleri</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Ana İçerik -->
+    <main class="main-container">
+        <!-- Şehir Seçimi Bölümü -->
+        <section class="city-section fade-in">
+            <div class="section-title">
+                <i class="fas fa-map-marker-alt"></i>
+                <h2>Şehrinizi Seçin</h2>
+            </div>
+            <p class="section-desc">Namaz vakitlerini görmek için bulunduğunuz şehri seçin</p>
+            
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <select id="citySelect" class="city-select">
+                    <option value="">Şehir Seçiniz...</option>
+                </select>
+            </div>
+            
+            <!-- Hızlı Şehirler -->
+            <div class="quick-cities">
+                <span class="quick-label">Hızlı Seçim:</span>
+                <button class="quick-city" data-city="İstanbul">İstanbul</button>
+                <button class="quick-city" data-city="Ankara">Ankara</button>
+                <button class="quick-city" data-city="İzmir">İzmir</button>
+                <button class="quick-city" data-city="Bursa">Bursa</button>
+                <button class="quick-city" data-city="Antalya">Antalya</button>
+            </div>
+        </section>
+
+        <!-- Tarih ve Konum Bilgisi -->
+        <section class="info-bar" id="infoBar" style="display: none;">
+            <div class="info-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span id="currentDate">-</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-city"></i>
+                <span id="selectedCity">-</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-moon"></i>
+                <span id="hijriDate">-</span>
+            </div>
+        </section>
+
+        <!-- Yükleniyor Animasyonu -->
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Vakitler yükleniyor...</p>
+        </div>
+
+        <!-- Ezan Vakitleri Kartları -->
+        <section class="prayer-times" id="prayerTimes" style="display: none;">
+            <div class="times-grid">
+                <!-- İmsak -->
+                <div class="time-card" data-prayer="imsak">
+                    <div class="card-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>İmsak</h3>
+                        <p class="time" id="imsakTime">--:--</p>
+                        <span class="label">Sahur Bitiş</span>
+                    </div>
+                    <div class="card-bg"></div>
+                </div>
+
+                <!-- Sabah -->
+                <div class="time-card" data-prayer="sabah">
+                    <div class="card-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Sabah</h3>
+                        <p class="time" id="sabahTime">--:--</p>
+                        <span class="label">Güneş Doğuşu</span>
+                    </div>
+                    <div class="card-bg"></div>
+                </div>
+
+                <!-- Öğle -->
+                <div class="time-card" data-prayer="ogle">
+                    <div class="card-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Öğle</h3>
+                        <p class="time" id="ogleTime">--:--</p>
+                        <span class="label">Zeval Vakti</span>
+                    </div>
+                    <div class="card-bg"></div>
+                </div>
+
+                <!-- İkindi -->
+                <div class="time-card" data-prayer="ikindi">
+                    <div class="card-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>İkindi</h3>
+                        <p class="time" id="ikindiTime">--:--</p>
+                        <span class="label">Öğleden Sonra</span>
+                    </div>
+                    <div class="card-bg"></div>
+                </div>
+
+                <!-- Akşam -->
+                <div class="time-card" data-prayer="aksam">
+                    <div class="card-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Akşam</h3>
+                        <p class="time" id="aksamTime">--:--</p>
+                        <span class="label">İftar Vakti</span>
+                    </div>
+                    <div class="card-bg"></div>
+                </div>
+
+                <!-- Yatsı -->
+                <div class="time-card" data-prayer="yatsi">
+                    <div class="card-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Yatsı</h3>
+                        <p class="time" id="yatsiTime">--:--</p>
+                        <span class="label">Gece Namazı</span>
+                    </div>
+                    <div class="card-bg"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sonraki Vakit Geri Sayım -->
+        <section class="countdown-section" id="countdownSection" style="display: none;">
+            <div class="countdown-card">
+                <div class="countdown-header">
+                    <i class="fas fa-hourglass-half"></i>
+                    <span>Sonraki Vakte Kalan Süre</span>
+                </div>
+                <div class="countdown-display">
+                    <div class="countdown-item">
+                        <span class="number" id="countdownHours">00</span>
+                        <span class="label">Saat</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="number" id="countdownMinutes">00</span>
+                        <span class="label">Dakika</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="number" id="countdownSeconds">00</span>
+                        <span class="label">Saniye</span>
+                    </div>
+                </div>
+                <p class="next-prayer" id="nextPrayerName">-</p>
+            </div>
+        </section>
+
+        <!-- Bilgi Kartları -->
+        <section class="info-section">
+            <div class="info-cards">
+                <div class="info-card fade-in-up">
+                    <div class="info-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Güncel Veriler</h3>
+                    <p>Diyanet İşleri Başkanlığından anlık olarak çekilen kesin namaz saatleri</p>
+                </div>
+                <div class="info-card fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="info-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Tüm Cihazlar</h3>
+                    <p>Akıllı telefon, tablet ve bilgisayarlarda mükemmel görünüm</p>
+                </div>
+                <div class="info-card fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="info-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Geri Sayım</h3>
+                    <p>Sonraki namaz vaktine ne kadar kaldığını anlık takip edin</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nasıl Kullanılır -->
+        <section class="how-to-use">
+            <div class="how-to-header">
+                <i class="fas fa-question-circle"></i>
+                <h2>Nasıl Kullanılır?</h2>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Şehir Seçin</h4>
+                        <p>Yukarıdaki listeden bulunduğunuz şehri seçin</p>
+                    </div>
+                </div>
+                <div class="step-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Vakitleri Görün</h4>
+                        <p>Güncel namaz saatleri otomatik olarak görüntülensin</p>
+                    </div>
+                </div>
+                <div class="step-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Takip Edin</h4>
+                        <p>Geri sayımdan sonraki vakti takip edin</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reklam Alanı -->
+        <section class="ad-section">
+            <div class="ad-container">
+                <span class="ad-label">Reklam</span>
+                <div class="ad-content">
+                    <i class="fas fa-ad"></i>
+                    <p>Reklam Alanı - 728x90</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-mosque"></i>
+                <span>Ezan Vakitleri</span>
+            </div>
+            <p class="footer-desc">Türkiye'nin en güncel ve kullanıcı dostu namaz vakitleri uygulaması</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link"><i class="fas fa-info-circle"></i> Hakkında</a>
+                <a href="#" class="footer-link"><i class="fas fa-envelope"></i> İletişim</a>
+                <a href="#" class="footer-link"><i class="fas fa-shield-alt"></i> Gizlilik</a>
+            </div>
+            <div class="footer-divider"></div>
+            <p class="footer-source">
+                <i class="fas fa-database"></i>
+                Veri Kaynağı: <strong>Diyanet İşleri Başkanlığı</strong>
+            </p>
+            <p class="copyright">
+                &copy; 2024 Ezan Vakitleri. Tüm hakları saklıdır.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
